@@ -104,10 +104,10 @@ Resources:
       Integration:
         Type: AWS_PROXY
         IntegrationHttpMethod: POST
-        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${WorkshopLambda.Arn}/invocations
+        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Lambda.Arn}/invocations
     DependsOn:
       - WorkshopApi
-      - WorkshopLambda
+      - Lambda
       - WorkshopApiResource
 
   WorkshopApiDeployment:
