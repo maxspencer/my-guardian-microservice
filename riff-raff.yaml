@@ -15,3 +15,15 @@ deployments:
   maxs-guardian-microservice-upload:
     template: maxs-guardian-microservice
     actions: [uploadLambda]
+  maxs-guardian-microservice-cfn:
+    type: cloud-formation
+    app: maxs-guardian-microservice-cfn
+    parameters:
+      prependStackToCloudFormationStackName: false
+      cloudFormationStackName: maxs-guardian-microservice
+      templatePath: cfn.yaml
+    dependencies: [maxs-guardian-microservice-upload]
+  maxs-guardian-microservice-lambda-update:
+    template: maxs-guardian-microservice
+    actions: [updateLambda]
+    dependencies: [maxs-guardian-microservice-cfn]
