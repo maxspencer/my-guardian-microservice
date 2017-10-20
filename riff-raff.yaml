@@ -4,26 +4,14 @@ templates:
   maxs-guardian-microservice:
     type: aws-lambda
     app: maxs-guardian-microservice
-    contentDirectory: maxs-guardian-microservice
+    contentDirectory:   maxs-guardian-microservice
     parameters:
       bucket: gu-jr-microservice-workshop-dist
       functionNames: [maxs-guardian-microservice-]
-      fileName: maxs-guardian-microservice.zip
+      fileName:  maxs-guardian-microservice.zip
       prefixStack: false
 
-deployments:
-  jr-microservice-upload:
-    template: maxs-guardian-microservice
-    actions: [uploadLambda]
-  maxs-guardian-microservice-cfn:
-    type: cloud-formation
-    app: maxs-guardian-microservice
-    parameters:
-      prependStackToCloudFormationStackName: false
-      cloudFormationStackName: maxs-guardian-microservice
-      templatePath: cfn.yaml
-    dependencies: [jr-microservice-upload]
-  jr-microservice-lambda-update:
-    template: maxs-guardian-microservice
-    actions: [updateLambda]
-    dependencies: [maxs-guardian-microservice-cfn]
+  deployments:
+    maxs-guardian-microservice-upload:
+      template: maxs-guardian-microservice
+      actions: [uploadLambda]
