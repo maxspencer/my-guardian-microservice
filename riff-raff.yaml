@@ -11,7 +11,7 @@ templates:
       fileName:  maxs-guardian-microservice.zip
       prefixStack: false
 
-  deployments:
-    maxs-guardian-microservice-upload:
-      template: maxs-guardian-microservice
-      actions: [uploadLambda]
+deployments:
+  maxs-guardian-microservice-upload:
+    template: maxs-guardian-microservice
+    actions: [uploadLambda]
