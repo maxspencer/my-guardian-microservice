@@ -80,6 +80,14 @@ Resources:
       Runtime: java8
       Timeout: 300
 
+  LambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Sub ${App}-${Stage}
+      Principal: apigateway.amazonaws.com
+    DependsOn: Lambda
+
   WorkshopApi:
     Type: AWS::ApiGateway::RestApi
     Properties:
