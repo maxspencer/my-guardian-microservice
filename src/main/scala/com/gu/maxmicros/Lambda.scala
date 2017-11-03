@@ -14,8 +14,8 @@ object Lambda {
   def handler(in: InputStream, out: OutputStream) {
     try {
       val input = Source.fromInputStream(in).mkString
-      System.out.println("Does this work?")
       System.out.println(input)
+
       val response = Try(input.toInt) match {
         case Success(number) => LambdaResponse(200, Map("Content-Type" -> "application/json"), primeStatus(number))
         case Failure(exception) => LambdaResponse(500, Map.empty, exception.toString)
