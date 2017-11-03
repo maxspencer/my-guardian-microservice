@@ -17,5 +17,5 @@ object Lambda {
     out.write(response.asJson.noSpaces.getBytes(UTF_8))
   }
 
-  def isPrime(number: Int): Boolean = (0 to sqrt(number).toInt).forall(i => number % i != 0)
+  def isPrime(number: Int): Boolean = (2 to sqrt(number).toInt).forall(i => number % i != 0)
 }
