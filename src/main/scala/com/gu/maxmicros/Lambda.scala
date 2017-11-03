@@ -6,23 +6,21 @@ import io.circe.syntax._
 import java.nio.charset.StandardCharsets.UTF_8
 import Math._
 
+import scala.io.Source
 import scala.util.{Failure, Success, Try}
 
 object Lambda {
 
   def handler(in: InputStream, out: OutputStream) {
     try {
-      val dis = new DataInputStream(in)
-      val bytes = new Array[Byte](2^7)
-      dis.readFully(bytes)
-      val string = new String(bytes)
-      /*
-      val response = Try(dis.readInt()) match {
+      val input = Source.fromInputStream(in).mkString
+      System.out.println("Does this work?")
+      System.out.println(input)
+      val response = Try(input.toInt) match {
         case Success(number) => LambdaResponse(200, Map("Content-Type" -> "application/json"), primeStatus(number))
         case Failure(exception) => LambdaResponse(500, Map.empty, exception.toString)
       }
-      */
-      val response = LambdaResponse(200, Map("Content-Type" -> "text/plain"), string)
+
       out.write(response.asJson.noSpaces.getBytes(UTF_8))
     } finally {
       in.close()
